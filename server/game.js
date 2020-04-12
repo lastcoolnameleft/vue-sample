@@ -6,7 +6,6 @@ var roomData = {};
 var game = function(io) {
     io.on('connection', (socket) => {
 
-
         console.log('connection!!')
 
         socket.on('createRoom', function() {
@@ -14,7 +13,7 @@ var game = function(io) {
             var roomName = generateRandomString(5)
             var gameData = {
                 roomName: roomName,
-                i: 1
+                count: 1
             }; 
             roomData[roomName] = gameData;
             socket.join(roomName);
@@ -29,7 +28,7 @@ var game = function(io) {
         })
         socket.on('increment', function(roomName, step) {
             console.log('increment');
-            roomData[roomName].i = roomData[roomName].i + step
+            roomData[roomName].count = roomData[roomName].count + step
             console.log(roomData[roomName]);
             io.to(roomName).emit('gameData', roomData[roomName]);
         })

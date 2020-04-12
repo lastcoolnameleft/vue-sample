@@ -15,9 +15,11 @@ app.get('/', function (req, res) {
 var i = 0;
 var roomData = {};
 
-// https://github.com/socketio/socket.io/issues/3259#issuecomment-474523271
-io.attach(server, {
-  pingTimeout: 30000,
-});
-
 game(io)
+// Not adding for now, but keeping in back pocket because reconnecting causes issues (lose place in room)
+// https://github.com/socketio/socket.io/issues/3259#issuecomment-474523271
+// Warning:  This creates an error which does not appear to affect functionality.
+// "WebSocket connection to 'ws://localhost/socket.io/?...' failed: Error during WebSocket handshake: Unexpected response code: 400"
+//io.attach(server, {
+//  pingTimeout: 30000,
+//});
